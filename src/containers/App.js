@@ -1,29 +1,31 @@
 import React, { Component } from "react";
 import Layout from "../components/Layout/Layout";
-import ListItem from "../components/ListItem/ListItem";
+import { Route } from "react-router-dom";
+import Home from "../components/Home/Home";
+import GroupDetail from "../components/GroupDetail/GroupDetail";
+import Serializer from "../util/Serializer";
 
 class App extends Component {
+  state = {
+    tasks: [],
+    taskGroups: {}
+  };
+
+  componentDidMount() {
+    this.setState({
+      taskGroups: Serializer.taskGroups
+    });
+  }
+
   render() {
     return (
       <Layout>
-        <div className="row h-100 ">
-          <div className="col h-100">
-            <div className="card-group pb-5">
-              <div className="card h-100 border-0 ">
-                <div className="card-title">
-                  <h1 className="font-weight-normal">Things To Do</h1>
-                </div>
-                <div className="card-body p-0 ">
-                  <ul className="list-group ">
-                    {[1, 2, 3, 4].map(elm => (
-                      <ListItem />
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Route
+          path="/"
+          exact
+          render={() => <Home groups={this.state.taskGroups} />}
+        />
+        <Route path="/group/:id" component={GroupDetail} />
       </Layout>
     );
   }
