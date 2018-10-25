@@ -1,0 +1,22 @@
+.liItem {
+    padding-left: 40px !important;
+    background: no-repeat url('../../assets/Group.svg') left;
+}
+
+
+.completed {
+    color: #888;
+}
+
+a,
+a:link,
+a:active {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover,
+a:visited {
+    color: #888;
+}
