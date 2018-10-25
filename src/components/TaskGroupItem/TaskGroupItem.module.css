@@ -8,15 +8,15 @@
     color: #888;
 }
 
-a,
-a:link,
-a:active {
+a.groupLink,
+a.groupLink:link,
+a.groupLink:active {
     color: #000;
     text-decoration: none;
     font-weight: 500;
 }
 
-a:hover,
-a:visited {
+a.groupLink:hover,
+a.groupLink:visited {
     color: #888;
 }

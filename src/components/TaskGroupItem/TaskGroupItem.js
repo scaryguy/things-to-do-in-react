@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./TaskGroupItem.module.css";
 import { Link } from "react-router-dom";
 
-const TaskGroupItem = ({ group }) => {
+const TaskGroupItem = ({ group, handleGroupClick }) => {
   return (
     <React.Fragment>
       <li
@@ -11,7 +11,14 @@ const TaskGroupItem = ({ group }) => {
           styles.liItem
         }
       >
-        <Link to={`/group/${group.id}`}>{group.title}</Link>
+        {/* <Link to={`/group/${group.id}`}>{group.title}</Link> */}
+        <a
+          className={styles.groupLink}
+          href={`/group/${group.id}`}
+          onClick={e => handleGroupClick(e, group)}
+        >
+          {group.title}
+        </a>
         <small className={styles.completed}>
           {group.completed} OF {group.total} TASKS COMPLETED
         </small>

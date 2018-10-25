@@ -15,7 +15,11 @@ const Home = props => {
             <div className="card-body p-0 ">
               <ul className="list-group ">
                 {entries.map(([key, group]) => (
-                  <TaskGroupItem group={group} key={group.id} />
+                  <TaskGroupItem
+                    group={group}
+                    key={group.id}
+                    handleGroupClick={props.handleGroupClick}
+                  />
                 ))}
               </ul>
             </div>

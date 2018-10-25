@@ -36,6 +36,9 @@ const Serializer = {
 
     // console.log(map);
     return map;
+  },
+  getTasks(groupTitle) {
+    return Data.filter(elm => elm.group == groupTitle);
   }
 };
 

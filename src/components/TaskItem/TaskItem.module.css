@@ -1,0 +1,16 @@
+.completed {
+    color: #888;
+}
+
+a.taskLink,
+a.taskLink:link,
+a.taskLink:active {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a.taskLink:hover,
+a.taskLink:visited {
+    color: #888;
+}
