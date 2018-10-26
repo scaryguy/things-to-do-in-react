@@ -1,15 +1,10 @@
-import Data from "../constants/Data";
 import Utilities from "./Utilities";
 
 const Serializer = {
-  get tasks() {
-    return "Tasks";
-  },
-
-  get taskGroups() {
+  taskGroups(data) {
     const map = {};
 
-    Data.forEach(elm => {
+    data.forEach(elm => {
       const { completedCount, totalCount } = getCounts(elm.group);
 
       map[elm.group] = {
@@ -23,7 +18,7 @@ const Serializer = {
     function getCounts(givenGroup) {
       let completedCount = 0;
       let totalCount = 0;
-      for (let [, { group, completedAt }] of Data.entries()) {
+      for (let [, { group, completedAt }] of data.entries()) {
         if (givenGroup === group) {
           totalCount++;
           if (completedAt !== null) {
@@ -37,8 +32,18 @@ const Serializer = {
     // console.log(map);
     return map;
   },
-  getTasks(groupTitle) {
-    return Data.filter(elm => elm.group == groupTitle);
+  getTasks(data, group) {
+    const title = typeof group === "object" ? group.title : group;
+    data = Utilities.cloneData(data);
+    return data.filter(elm => elm.group === title);
+  },
+  updateTask(data, id, completed = true) {
+    data = Utilities.cloneData(data);
+
+    const task = data.filter(elm => elm.id === id)[0];
+    task.completedAt = completed ? new Date().getTime() : null;
+
+    return data.map(elm => (elm.id === id ? task : elm));
   }
 };
 

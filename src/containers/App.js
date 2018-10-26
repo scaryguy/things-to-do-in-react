@@ -3,11 +3,12 @@ import Layout from "../components/Layout/Layout";
 import { Route, withRouter } from "react-router-dom";
 import Home from "../components/Home/Home";
 import GroupDetail from "../components/GroupDetail/GroupDetail";
+import Data from "../constants/Data";
 import Serializer from "../util/Serializer";
 
 class App extends Component {
   state = {
-    tasks: [],
+    data: [],
     taskGroups: {},
     currentGroup: null,
     currentTasks: []
@@ -15,21 +16,33 @@ class App extends Component {
 
   handleGroupClick = (e, group) => {
     e.preventDefault();
-    console.log(group);
+    // console.log(group);
     this.setState(prevState => {
       return {
-        currentTasks: Serializer.getTasks(group.title),
+        currentTasks: Serializer.getTasks(prevState.data, group),
         currentGroup: group
       };
     });
     this.props.history.push(`/group/${group.id}`);
   };
 
+  handleTaskClick = (e, task, completed) => {
+    this.setState(prevState => {
+      const newData = Serializer.updateTask(prevState.data, task.id, completed);
+      return {
+        data: newData,
+        taskGroups: Serializer.taskGroups(newData),
+        currentTasks: Serializer.getTasks(newData, task.group)
+      };
+    });
+  };
+
   componentDidMount() {
     console.log("ee?");
 
     this.setState({
-      taskGroups: Serializer.taskGroups
+      data: Data,
+      taskGroups: Serializer.taskGroups(Data)
     });
   }
 
@@ -53,6 +66,7 @@ class App extends Component {
             <GroupDetail
               group={this.state.currentGroup}
               tasks={this.state.currentTasks}
+              handleTaskClick={this.handleTaskClick}
             />
           )}
         />
