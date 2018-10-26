@@ -32,18 +32,50 @@ const Serializer = {
     // console.log(map);
     return map;
   },
+
   getTasks(data, group) {
     const title = typeof group === "object" ? group.title : group;
     data = Utilities.cloneData(data);
     return data.filter(elm => elm.group === title);
   },
+
   updateTask(data, id, completed = true) {
     data = Utilities.cloneData(data);
 
     const task = data.filter(elm => elm.id === id)[0];
     task.completedAt = completed ? new Date().getTime() : null;
 
-    return data.map(elm => (elm.id === id ? task : elm));
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].dependencyIds.indexOf(task.id) > -1) {
+        let index = data[i].dependencyIds.indexOf(task.id);
+        console.log("It's dependency should be going!!", data[i]);
+        console.log("INDEX FOR:", index, data[i]);
+
+        const deleted = data[i].dependencyIds.splice(index, 1);
+        console.log("deleyed?", deleted);
+        console.log("What about now?", data[i]);
+      }
+    }
+
+    return data.map(elm => {
+      if (elm.id === id) {
+        return task;
+      } else {
+        return elm;
+      }
+    });
+  },
+
+  checkCompletable(task) {
+    // data = Utilities.cloneData(data);
+    // console.log(data);
+    return task.dependencyIds.length > 0 ? false : true;
+    // for (let i = 0; i < data.length; i++) {
+    //   if (data[i].dependencyIds.includes(task.id)) {
+    //     return false;
+    //   }
+    // }
+    // return true;
   }
 };
 

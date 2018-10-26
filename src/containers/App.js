@@ -27,14 +27,24 @@ class App extends Component {
   };
 
   handleTaskClick = (e, task, completed) => {
-    this.setState(prevState => {
-      const newData = Serializer.updateTask(prevState.data, task.id, completed);
-      return {
-        data: newData,
-        taskGroups: Serializer.taskGroups(newData),
-        currentTasks: Serializer.getTasks(newData, task.group)
-      };
-    });
+    if (Serializer.checkCompletable(task)) {
+      this.setState(prevState => {
+        const newData = Serializer.updateTask(
+          prevState.data,
+          task.id,
+          completed
+        );
+        return {
+          data: newData,
+          taskGroups: Serializer.taskGroups(newData),
+          currentTasks: Serializer.getTasks(newData, task.group)
+        };
+      });
+    } else {
+      // alert("Not completable!");
+
+      return null;
+    }
   };
 
   componentDidMount() {

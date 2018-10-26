@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./TaskItem.module.css";
-import { Link } from "react-router-dom";
+// import styles from "./TaskItem.module.css";
+// import { Link } from "react-router-dom";
 
 const TaskItem = ({ task, handleTaskClick }) => {
   const isChecked = task.completedAt === null ? false : true;
