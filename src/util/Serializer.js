@@ -36,7 +36,16 @@ const Serializer = {
   getTasks(data, group) {
     const title = typeof group === "object" ? group.title : group;
     data = Utilities.cloneData(data);
-    return data.filter(elm => elm.group === title);
+    const filtered = data.filter(elm => elm.group === title);
+    return filtered.map(task => {
+      task.status = "OPEN";
+      if (!this.checkCompletable(task)) {
+        task.status = "LOCKED";
+      } else if (task.completedAt !== null) {
+        task.status = "COMPLETED";
+      }
+      return task;
+    });
   },
 
   updateTask(data, id, completed = true) {
@@ -48,22 +57,12 @@ const Serializer = {
     for (let i = 0; i < data.length; i++) {
       if (data[i].dependencyIds.indexOf(task.id) > -1) {
         let index = data[i].dependencyIds.indexOf(task.id);
-        console.log("It's dependency should be going!!", data[i]);
-        console.log("INDEX FOR:", index, data[i]);
 
-        const deleted = data[i].dependencyIds.splice(index, 1);
-        console.log("deleyed?", deleted);
-        console.log("What about now?", data[i]);
+        data[i].dependencyIds.splice(index, 1);
       }
     }
 
-    return data.map(elm => {
-      if (elm.id === id) {
-        return task;
-      } else {
-        return elm;
-      }
-    });
+    return data.map(elm => (elm.id === id ? task : elm));
   },
 
   checkCompletable(task) {

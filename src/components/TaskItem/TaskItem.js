@@ -9,11 +9,8 @@ const TaskItem = ({ task, handleTaskClick }) => {
       <li
         className={`d-flex flex-column list-group-item border-left-0 border-right-0 p-3 `}
       >
-        {/* <Link to={`/group/${group.id}`}>{group.title}</Link> */}
-        {/* <a className={styles.taskLink} href={`/task/${task.id}`}>
-          {task.task}
-        </a> */}
         <label>{task.task}</label>
+        <h6>{task.status}</h6>
         <input
           onChange={e => handleTaskClick(e, task, !isChecked)}
           type="checkbox"
