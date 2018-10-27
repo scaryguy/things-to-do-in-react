@@ -19,6 +19,7 @@ const Serializer = {
     function getCounts(givenGroup) {
       let completedCount = 0;
       let totalCount = 0;
+
       for (let [, { group, completedAt }] of data.entries()) {
         if (givenGroup === group) {
           totalCount++;
@@ -30,14 +31,15 @@ const Serializer = {
       return { completedCount, totalCount };
     }
 
-    // console.log(map);
     return map;
   },
 
   getTasks(data, group) {
     const title = typeof group === "object" ? group.title : group;
     data = Utilities.cloneData(data);
+
     const filtered = data.filter(elm => elm.group === title);
+
     return filtered.map(task => {
       task.status = tType.OPEN;
       if (!this.checkCompletable(task)) {
@@ -45,6 +47,7 @@ const Serializer = {
       } else if (task.completedAt !== null) {
         task.status = tType.COMPLETED;
       }
+
       return task;
     });
   },
@@ -67,15 +70,7 @@ const Serializer = {
   },
 
   checkCompletable(task) {
-    // data = Utilities.cloneData(data);
-    // console.log(data);
     return task.dependencyIds.length > 0 ? false : true;
-    // for (let i = 0; i < data.length; i++) {
-    //   if (data[i].dependencyIds.includes(task.id)) {
-    //     return false;
-    //   }
-    // }
-    // return true;
   }
 };
 

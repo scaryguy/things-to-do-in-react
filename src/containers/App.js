@@ -40,10 +40,6 @@ class App extends Component {
           currentTasks: Serializer.getTasks(newData, task.group)
         };
       });
-    } else {
-      // alert("Not completable!");
-
-      return null;
     }
   };
 
