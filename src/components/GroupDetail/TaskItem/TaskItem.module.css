@@ -8,7 +8,7 @@
 
 
 .TaskItem input[type=checkbox] {
-    appearance: none;
+    display: none;
     margin: 0;
     padding: 0;
 }
