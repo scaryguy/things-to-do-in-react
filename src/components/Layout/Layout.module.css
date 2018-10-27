@@ -1,0 +1,12 @@
+.Layout h1 {
+    font-size: 2em;
+}
+
+.Layout li {
+    border-radius: 0 !important;
+}
+
+.Layout li:not(:last-child) {
+    border-top: 1px solid rgba(0, 0, 0, .125) !important;
+    border-bottom: 0;
+}

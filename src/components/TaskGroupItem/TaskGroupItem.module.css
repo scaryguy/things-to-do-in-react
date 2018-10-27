@@ -1,22 +1,22 @@
-.liItem {
+.TaskGroupItem {
     padding-left: 40px !important;
     background: no-repeat url('../../assets/Group.svg') left;
 }
 
 
-.completed {
-    color: #888;
-}
-
-a.groupLink,
-a.groupLink:link,
-a.groupLink:active {
+.TaskGroupItem a,
+.TaskGroupItem a:link,
+.TaskGroupItem a:active,
+.TaskGroupItem a:visited {
     color: #000;
     text-decoration: none;
     font-weight: 500;
 }
 
-a.groupLink:hover,
-a.groupLink:visited {
+.TaskGroupItem a:hover {
+    color: #666;
+}
+
+.TaskGroupItem small {
     color: #888;
 }
