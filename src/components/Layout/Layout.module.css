@@ -1,7 +1,7 @@
 .Layout .resetContainer {
-    position: absolute;
-    bottom: 25px;
-    left: 25px;
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
 }
 
 

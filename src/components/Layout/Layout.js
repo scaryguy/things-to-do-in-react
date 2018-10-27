@@ -12,7 +12,7 @@ const Layout = props => {
         </div>
         <div className={styles.resetContainer}>
           <a href="/" onClick={e => props.resetState(e)}>
-            Reset state
+            Reset
           </a>
         </div>
       </div>
