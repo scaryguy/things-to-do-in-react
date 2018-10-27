@@ -4,7 +4,7 @@ import { Route, withRouter } from "react-router-dom";
 import Home from "../components/Home/Home";
 import GroupDetail from "../components/GroupDetail/GroupDetail";
 import Data from "../constants/Data";
-import Serializer from "../util/Serializer";
+import TaskModel from "../model/TaskModel";
 
 class App extends Component {
   state = {
@@ -19,7 +19,7 @@ class App extends Component {
 
     this.setState(prevState => {
       return {
-        currentTasks: Serializer.getTasks(prevState.data, group),
+        currentTasks: TaskModel.getTasks(prevState.data, group),
         currentGroup: group
       };
     });
@@ -27,17 +27,17 @@ class App extends Component {
   };
 
   handleTaskClick = (e, task, completed) => {
-    if (Serializer.checkCompletable(task)) {
+    if (TaskModel.checkCompletable(task)) {
       this.setState(prevState => {
-        const newData = Serializer.updateTask(
+        const newData = TaskModel.updateTask(
           prevState.data,
           task.id,
           completed
         );
         return {
           data: newData,
-          taskGroups: Serializer.taskGroups(newData),
-          currentTasks: Serializer.getTasks(newData, task.group)
+          taskGroups: TaskModel.taskGroups(newData),
+          currentTasks: TaskModel.getTasks(newData, task.group)
         };
       });
     }
@@ -48,7 +48,7 @@ class App extends Component {
 
     this.setState({
       data: Data,
-      taskGroups: Serializer.taskGroups(Data),
+      taskGroups: TaskModel.taskGroups(Data),
       currentGroup: null,
       currentTasks: []
     });
@@ -57,7 +57,7 @@ class App extends Component {
   componentDidMount() {
     this.setState({
       data: Data,
-      taskGroups: Serializer.taskGroups(Data)
+      taskGroups: TaskModel.taskGroups(Data)
     });
   }
 

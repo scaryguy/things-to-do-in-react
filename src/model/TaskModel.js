@@ -1,7 +1,7 @@
-import Utilities from "./Utilities";
+import Utilities from "../util/Utilities";
 import * as tType from "../constants/TaskTypes";
 
-const Serializer = {
+const TaskModel = {
   taskGroups(data) {
     const map = {};
 
@@ -40,16 +40,17 @@ const Serializer = {
 
     const filtered = data.filter(elm => elm.group === title);
 
-    return filtered.map(task => {
+    const result = filtered.map(task => {
       task.status = tType.OPEN;
       if (!this.checkCompletable(task)) {
         task.status = tType.LOCKED;
       } else if (task.completedAt !== null) {
         task.status = tType.COMPLETED;
       }
-
       return task;
     });
+
+    return result;
   },
 
   updateTask(data, id, completed = true) {
@@ -74,4 +75,4 @@ const Serializer = {
   }
 };
 
-export default Serializer;
+export default TaskModel;

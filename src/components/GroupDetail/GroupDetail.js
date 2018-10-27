@@ -1,6 +1,6 @@
 import React from "react";
 // import ListItem from "../ListItem/TaskGroupItem";
-import TaskItem from "../TaskItem/TaskItem";
+import TaskItem from "./TaskItem/TaskItem";
 import { Link, Redirect } from "react-router-dom";
 import styles from "./GroupDetail.module.css";
 

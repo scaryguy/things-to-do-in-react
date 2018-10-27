@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./TaskItem.module.css";
-import * as tType from "../../constants/TaskTypes";
+import * as tType from "../../../constants/TaskTypes";
 
 const TaskItem = ({ task, handleTaskClick }) => {
   const isChecked = task.completedAt === null ? false : true;

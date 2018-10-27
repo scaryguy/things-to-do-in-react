@@ -1,5 +1,5 @@
 import React from "react";
-import TaskGroupItem from "../TaskGroupItem/TaskGroupItem";
+import TaskGroupItem from "./TaskGroupItem/TaskGroupItem";
 import styles from "./Home.module.css";
 
 const Home = props => {

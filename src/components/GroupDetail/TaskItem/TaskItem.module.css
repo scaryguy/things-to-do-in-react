@@ -25,7 +25,7 @@
     padding: 5px 15px 5px 15px;
     align-self: flex-start;
     margin-right: 20px;
-    background: no-repeat url('../../assets/Incomplete.svg') center center;
+    background: no-repeat url('../../../assets/Incomplete.svg') center center;
 }
 
 
@@ -40,13 +40,13 @@
     padding: 5px 15px 5px 15px;
     align-self: flex-start;
     margin-right: 20px;
-    background: no-repeat url('../../assets/Locked.svg') center center;
+    background: no-repeat url('../../../assets/Locked.svg') center center;
 }
 
 
 .TaskItem input[type=checkbox]:checked+label:before {
     content: "";
-    background: no-repeat url('../../assets/Completed.svg') center center;
+    background: no-repeat url('../../../assets/Completed.svg') center center;
     /* border: 1px solid #f5f5f5; */
     padding: 5px 15px 5px 15px;
     align-self: flex-start;
