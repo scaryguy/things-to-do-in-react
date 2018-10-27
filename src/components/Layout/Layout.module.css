@@ -1,3 +1,10 @@
+.Layout .resetContainer {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+}
+
+
 .Layout h1 {
     font-size: 2em;
 }

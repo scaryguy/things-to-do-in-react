@@ -12,9 +12,9 @@ const GroupDetail = ({ tasks, group, handleTaskClick }) => {
       <div className="col h-100">
         <div className="card-group pb-5">
           <div className="card h-100 border-0 ">
-            <div className="card-title d-flex flex-direction-column align-items-center">
+            <div className="card-title d-flex flex-direction-column flex-wrap align-items-center">
               <h1 className="font-weight-normal">{group.title}</h1>
-              <Link to="/" className={`ml-auto ` + styles.allGroupsLink}>
+              <Link to="/" className={`ml-auto ${styles.allGroupsLink}`}>
                 ALL GROUPS
               </Link>
             </div>

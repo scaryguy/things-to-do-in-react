@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./TaskItem.module.css";
-// import { Link } from "react-router-dom";
+import * as tType from "../../constants/TaskTypes";
 
 const TaskItem = ({ task, handleTaskClick }) => {
   const isChecked = task.completedAt === null ? false : true;
   return (
     <li
-      className={`d-flex flex-direction-column list-group-item  border-right-0 border-left-0 p-4 ${
+      className={`d-flex flex-direction-column list-group-item flex-wrap border-right-0 border-left-0 p-4 ${
         styles.TaskItem
-      } ${task.status === "LOCKED" ? styles.lockedTask : ""}`}
+      } ${task.status === tType.LOCKED ? styles.lockedTask : ""}`}
     >
       <input
         onChange={e => handleTaskClick(e, task, !isChecked)}
@@ -16,11 +16,11 @@ const TaskItem = ({ task, handleTaskClick }) => {
         name="task"
         id={`task${task.id}`}
         checked={isChecked}
-        disabled={task.status === "LOCKED" ? true : false}
+        disabled={task.status === tType.LOCKED ? true : false}
       />
       <label
         htmlFor={`task${task.id}`}
-        className={task.status == "COMPLETED" ? styles.completed : ""}
+        className={task.status === tType.COMPLETED ? styles.completed : ""}
       >
         {task.task}
       </label>

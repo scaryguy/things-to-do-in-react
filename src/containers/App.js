@@ -16,7 +16,7 @@ class App extends Component {
 
   handleGroupClick = (e, group) => {
     e.preventDefault();
-    // console.log(group);
+
     this.setState(prevState => {
       return {
         currentTasks: Serializer.getTasks(prevState.data, group),
@@ -43,9 +43,18 @@ class App extends Component {
     }
   };
 
-  componentDidMount() {
-    console.log("ee?");
+  resetState = e => {
+    e.preventDefault();
 
+    this.setState({
+      data: Data,
+      taskGroups: Serializer.taskGroups(Data),
+      currentGroup: null,
+      currentTasks: []
+    });
+  };
+
+  componentDidMount() {
     this.setState({
       data: Data,
       taskGroups: Serializer.taskGroups(Data)
@@ -54,7 +63,7 @@ class App extends Component {
 
   render() {
     return (
-      <Layout>
+      <Layout resetState={this.resetState}>
         <Route
           path="/"
           exact

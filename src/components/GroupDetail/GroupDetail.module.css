@@ -1,1 +1,7 @@
-a.allGroupsLink {}
+a.allGroupsLink {
+    font-size: 1em;
+}
+
+a.allGroupsLink:hover {
+    text-decoration: none;
+}
