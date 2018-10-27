@@ -19,7 +19,7 @@ const GroupDetail = ({ tasks, group, handleTaskClick }) => {
               </Link>
             </div>
             <div className="card-body p-0 ">
-              <ul className="list-group ">
+              <ul className="list-group">
                 {tasks.map(task => (
                   <TaskItem
                     task={task}

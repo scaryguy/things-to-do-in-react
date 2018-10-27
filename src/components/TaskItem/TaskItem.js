@@ -1,25 +1,27 @@
 import React from "react";
-// import styles from "./TaskItem.module.css";
+import styles from "./TaskItem.module.css";
 // import { Link } from "react-router-dom";
 
 const TaskItem = ({ task, handleTaskClick }) => {
   const isChecked = task.completedAt === null ? false : true;
   return (
-    <React.Fragment>
+    <div className={styles.TaskItem}>
       <li
-        className={`d-flex flex-column list-group-item border-left-0 border-right-0 p-3 `}
+        className={`d-flex flex-direction-column justify-content-start align-items-center list-group-item border-left-0 border-right-0 p-3 ${
+          task.status === "LOCKED" ? styles.lockedTask : ""
+        }`}
       >
-        <label>{task.task}</label>
-        <h6>{task.status}</h6>
         <input
           onChange={e => handleTaskClick(e, task, !isChecked)}
           type="checkbox"
           name="task"
           id={`task${task.id}`}
           checked={isChecked}
+          disabled={task.status === "LOCKED" ? true : false}
         />
+        <label htmlFor={`task${task.id}`}>{task.task}</label>
       </li>
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 import Utilities from "./Utilities";
+import * as tType from "../constants/TaskTypes";
 
 const Serializer = {
   taskGroups(data) {
@@ -38,11 +39,11 @@ const Serializer = {
     data = Utilities.cloneData(data);
     const filtered = data.filter(elm => elm.group === title);
     return filtered.map(task => {
-      task.status = "OPEN";
+      task.status = tType.OPEN;
       if (!this.checkCompletable(task)) {
-        task.status = "LOCKED";
+        task.status = tType.LOCKED;
       } else if (task.completedAt !== null) {
-        task.status = "COMPLETED";
+        task.status = tType.COMPLETED;
       }
       return task;
     });
