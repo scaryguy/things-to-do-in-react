@@ -5,23 +5,26 @@ import styles from "./TaskItem.module.css";
 const TaskItem = ({ task, handleTaskClick }) => {
   const isChecked = task.completedAt === null ? false : true;
   return (
-    <div className={styles.TaskItem}>
-      <li
-        className={`d-flex flex-direction-column justify-content-start align-items-center list-group-item border-left-0 border-right-0 p-3 ${
-          task.status === "LOCKED" ? styles.lockedTask : ""
-        }`}
+    <li
+      className={`d-flex flex-direction-column list-group-item  border-right-0 border-left-0 p-4 ${
+        styles.TaskItem
+      } ${task.status === "LOCKED" ? styles.lockedTask : ""}`}
+    >
+      <input
+        onChange={e => handleTaskClick(e, task, !isChecked)}
+        type="checkbox"
+        name="task"
+        id={`task${task.id}`}
+        checked={isChecked}
+        disabled={task.status === "LOCKED" ? true : false}
+      />
+      <label
+        htmlFor={`task${task.id}`}
+        className={task.status == "COMPLETED" ? styles.completed : ""}
       >
-        <input
-          onChange={e => handleTaskClick(e, task, !isChecked)}
-          type="checkbox"
-          name="task"
-          id={`task${task.id}`}
-          checked={isChecked}
-          disabled={task.status === "LOCKED" ? true : false}
-        />
-        <label htmlFor={`task${task.id}`}>{task.task}</label>
-      </li>
-    </div>
+        {task.task}
+      </label>
+    </li>
   );
 };
 

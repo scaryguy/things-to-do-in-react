@@ -4,7 +4,7 @@ import styles from "./TaskGroupItem.module.css";
 const TaskGroupItem = ({ group, handleGroupClick }) => {
   return (
     <li
-      className={`d-flex flex-column list-group-item border-left-0 border-right-0 border-radius-0 p-3 ${
+      className={`d-flex flex-column list-group-item border-left-0 border-right-0 border-bottom-0 border-radius-0 p-3 ${
         styles.TaskGroupItem
       }`}
     >

@@ -1,6 +1,11 @@
 .completed {
-    color: #888;
+    text-decoration: line-through;
 }
+
+.TaskItem {
+    padding-left: 0 !important;
+}
+
 
 .TaskItem input[type=checkbox] {
     appearance: none;
@@ -10,6 +15,7 @@
 
 .TaskItem label {
     cursor: pointer;
+    margin: 0;
 }
 
 .TaskItem input[type=checkbox]+label:before {
@@ -22,15 +28,13 @@
     background: no-repeat url('../../assets/Incomplete.svg') left;
 }
 
-.TaskItem label {
-    font-weight: normal;
-}
 
-.TaskItem .lockedTask label {
+
+.lockedTask label {
     color: #999;
 }
 
-.TaskItem .lockedTask input[type=checkbox]+label:before {
+.lockedTask input[type=checkbox]+label:before {
     content: "";
     /* border: 1px solid #333; */
     padding: 5px 15px 5px 15px;
@@ -49,15 +53,15 @@
     margin-right: 15px;
 }
 
-a.taskLink,
-a.taskLink:link,
-a.taskLink:active {
+.TaskItem a,
+.TaskItem a:link,
+.TaskItem a:active {
     color: #000;
     text-decoration: none;
     font-weight: 500;
 }
 
-a.taskLink:hover,
-a.taskLink:visited {
+.TaskItem a:hover,
+.TaskItem a:visited {
     color: #888;
 }
