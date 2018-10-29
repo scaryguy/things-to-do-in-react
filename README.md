@@ -1,6 +1,6 @@
 # Things to do
 
-This is a demo app created by scaryguy.
+A to-do list style demo React app for a coding challange.
 
 ## Requirements
 

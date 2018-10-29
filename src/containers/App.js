@@ -14,6 +14,13 @@ class App extends Component {
     currentTasks: []
   };
 
+  componentDidMount() {
+    this.setState({
+      data: Data,
+      taskGroups: TaskModel.taskGroups(Data)
+    });
+  }
+
   handleGroupClick = (e, group) => {
     e.preventDefault();
 
@@ -53,13 +60,6 @@ class App extends Component {
       currentTasks: []
     });
   };
-
-  componentDidMount() {
-    this.setState({
-      data: Data,
-      taskGroups: TaskModel.taskGroups(Data)
-    });
-  }
 
   render() {
     return (
