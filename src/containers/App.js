@@ -5,6 +5,7 @@ import Home from "../components/Home/Home";
 import GroupDetail from "../components/GroupDetail/GroupDetail";
 import Data from "../constants/Data";
 import TaskModel from "../model/TaskModel";
+import { connect } from "react-redux";
 
 class App extends Component {
   state = {
@@ -22,15 +23,14 @@ class App extends Component {
   }
 
   handleGroupClick = (e, group) => {
-    e.preventDefault();
-
-    this.setState(prevState => {
-      return {
-        currentTasks: TaskModel.getTasks(prevState.data, group),
-        currentGroup: group
-      };
-    });
-    this.props.history.push(`/group/${group.id}`);
+    // e.preventDefault();
+    // this.setState(prevState => {
+    //   return {
+    //     currentTasks: TaskModel.getTasks(prevState.data, group),
+    //     currentGroup: group
+    //   };
+    // });
+    // this.props.history.push(`/group/${group.id}`);
   };
 
   handleTaskClick = (e, task, completed) => {
@@ -67,20 +67,15 @@ class App extends Component {
         <Route
           path="/"
           exact
-          render={() => (
-            <Home
-              groups={this.state.taskGroups}
-              handleGroupClick={this.handleGroupClick}
-            />
-          )}
+          render={() => <Home handleGroupClick={this.handleGroupClick} />}
         />
         <Route
           path="/group/:id"
           exact
           render={() => (
             <GroupDetail
-              group={this.state.currentGroup}
-              tasks={this.state.currentTasks}
+              group={this.props.currentGroup}
+              tasks={this.props.currentTasks}
               handleTaskClick={this.handleTaskClick}
             />
           )}
@@ -90,4 +85,11 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+const mapPropsToState = state => {
+  return {
+    currentGroup: state.currentGroup,
+    currentTasks: state.currentTasks
+  };
+};
+
+export default withRouter(connect(mapPropsToState)(App));

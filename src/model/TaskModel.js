@@ -58,6 +58,7 @@ const TaskModel = {
 
     const task = data.filter(elm => elm.id === id)[0];
     task.completedAt = completed ? new Date().getTime() : null;
+    console.log("coming here?");
 
     for (let i = 0; i < data.length; i++) {
       if (data[i].dependencyIds.indexOf(task.id) > -1) {
